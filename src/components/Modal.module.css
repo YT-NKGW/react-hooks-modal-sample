@@ -1,4 +1,4 @@
-dialog {
+.dialog {
   pointer-events: none;
   opacity: 0;
   display: flex;
@@ -8,12 +8,30 @@ dialog {
   box-shadow: #666 4px 4px 6px;
 }
 
-dialog[open] {
-  opacity: 1;
-  transition: opacity .5s;
+.dialog[open] {
   pointer-events: inherit;
 }
 
-dialog::backdrop {
+.dialog::backdrop {
   background: rgba(0, 0, 0, .5);
+}
+
+.fade {
+  opacity: 0;
+}
+
+.fade[open] {
+  opacity: 1;
+  transition: opacity .5s;
+}
+
+.slide {
+  opacity: 1;
+  top: 100%;
+}
+
+.slide[open] {
+  opacity: 1;
+  top: 0;
+  transition: top .5s;
 }
