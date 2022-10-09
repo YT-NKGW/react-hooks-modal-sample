@@ -1,26 +1,21 @@
-import { createRef, useState, useEffect } from "react"
-import styles from "./Modal.module.css"
+import { useState } from 'react'
+import ModalContent from './ModalContent'
+import ModalTrigger from './ModalTrigger'
+import ModalContentType from '../types/ModalContentType'
 
-const DialogModal = () => {
-  const modalRef = createRef<HTMLDialogElement>()
+type DialogModalContentType = {
+  contentType: typeof ModalContentType[keyof typeof ModalContentType]
+  contentText: string
+}
+
+const DialogModal = ({ contentType, contentText }: DialogModalContentType) => {
   const [isOpenModal, setModalState] = useState(false)
   const toggleModal = () => setModalState((current) => !current)
 
-  useEffect(() => {
-    if (!modalRef.current) return
-
-    modalRef.current[isOpenModal ? 'showModal' : 'close']()    
-  }, [isOpenModal])
-
   return (
     <>
-      <dialog className={styles.dialog} ref={modalRef}>
-        <p>This is dialog modal</p>
-        <button onClick={toggleModal}>Close</button>
-      </dialog>
-      <div className="actions">
-        <button data-modal="true" onClick={toggleModal}>Open dialog modal</button>
-      </div>
+      <ModalContent isOpen={isOpenModal} contentType={contentType} contentText={contentText} toggleModal={toggleModal} />
+      <ModalTrigger toggleModal={toggleModal} />
     </>
   )
 }
