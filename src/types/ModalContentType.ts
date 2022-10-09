@@ -1,6 +1,6 @@
-const ModalContenttype = {
+const ModalContentType = {
   fade: 'fade',
   slide: 'slide'
 } as const
 
-export default ModalContenttype
+export default ModalContentType
